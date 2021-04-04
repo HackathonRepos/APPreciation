@@ -17,6 +17,18 @@ function SignIn() {
           .auth()
           .signInWithPopup(provider)
           .then((result) => {
+            var user = firebase.auth().currentUser;
+            var userRef = firebase.firestore().collection("users").doc(user.uid)
+            userRef.get()
+            .then(results => {
+              if (!results.exists) {
+                userRef.set({"name":user.displayName, "restaraunts":[], "notes":[]})
+                .then(console.log("users db update worked!"))
+                .catch(e => {console.log("error in users db update: " + e)});          
+              }
+            })
+            .catch(e => {console.log("error in getting users db: " + e)}); 
+
             console.log("Signed In");
             history.push("/businesses");
           })
