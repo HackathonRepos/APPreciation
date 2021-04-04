@@ -23,10 +23,11 @@ function NoteForm() {
   function UpdateDBs() {
     var db = firebase.firestore();
   
-    var user_id = "user-id"
+    // var user_id = "user-id"
+    var user_id = "TMTD86D3yZN3zfMT6xsgp0y4LTW2"
     var note_id = uuidv4()
     var restaraunt_id = uuidv4()
-  
+
     var user = db.collection("users").doc(user_id);
     var note = db.collection("notes").doc(note_id)
     var restaraunt = db.collection("restaraunts").doc(restaraunt_id)
@@ -35,7 +36,7 @@ function NoteForm() {
     .then(data => {
       var user_data = data.data();
       user_data["notes"].push(note_id);
-      user_data["restaraunts"].push("Restaraunt");
+      user_data["restaraunts"].push(restaraunt_id);
       user_data["restaraunts"] = [...new Set(user_data["restaraunts"])]
       console.log(user_data)
       
