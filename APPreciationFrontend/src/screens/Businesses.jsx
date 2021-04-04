@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Flex, Text, Heading, Button, Select } from "@chakra-ui/react";
 import { stateList } from "../components/stateList";
 import stateCities from "state-cities";
+import { capitalCase } from "capital-case";
 
 function Businesses() {
   const [state, setGeoState] = useState("California");
@@ -28,13 +29,13 @@ function Businesses() {
       <Flex>
         <Heading>And in the city of</Heading>
         <Select
-          placeholder={city}
+          placeholder={capitalCase(city)}
           size="lg"
           onChange={(evt) => setCity(evt.target.value, setDisabled(false))}
         >
           {stateCities.getCities(state).map((cityItem, index) => (
-            <option value={cityItem} key={index}>
-              {cityItem}
+            <option value={capitalCase(cityItem)} key={index}>
+              {capitalCase(cityItem)}
             </option>
           ))}
         </Select>
