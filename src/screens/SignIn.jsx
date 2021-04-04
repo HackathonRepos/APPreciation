@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Text, Heading, Button, Center } from "@chakra-ui/react";
+import { Flex, Text, Heading, Button, Center, Link } from "@chakra-ui/react";
 import { UnlockIcon } from "@chakra-ui/icons";
 
 function SignIn() {
@@ -22,6 +22,9 @@ function SignIn() {
               <UnlockIcon marginRight="30px" />
               Sign In With Google
             </Button>
+            <Link href="/signup" marginTop="25px">
+              Were you looking to sign up for an account?
+            </Link>
           </Flex>
         </Center>
       </Flex>
