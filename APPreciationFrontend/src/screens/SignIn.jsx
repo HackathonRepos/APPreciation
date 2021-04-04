@@ -17,7 +17,6 @@ function SignIn() {
           .auth()
           .signInWithPopup(provider)
           .then((result) => {
-            const user = result.user;
             console.log("Signed In");
             history.push("/businesses");
           })

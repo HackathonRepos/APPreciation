@@ -8,8 +8,6 @@ function GenerateRestaraunts() {
 }
 
 function Businesses() {
-  var restaraunts = GenerateRestaraunts();
-
   return (
     <div>
       <p>Buisnesses</p>
