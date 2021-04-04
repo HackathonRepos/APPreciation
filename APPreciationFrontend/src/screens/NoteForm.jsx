@@ -23,33 +23,34 @@ function NoteForm() {
   function UpdateDBs() {
     var db = firebase.firestore();
   
-    var user_id = "user-id"
+    // var user_id = "user-id"
+    var user_id = "TMTD86D3yZN3zfMT6xsgp0y4LTW2"
     var note_id = uuidv4()
-    var restaraunt_id = uuidv4()
-  
+    var restaurant_id = uuidv4()
+
     var user = db.collection("users").doc(user_id);
     var note = db.collection("notes").doc(note_id)
-    var restaraunt = db.collection("restaraunts").doc(restaraunt_id)
+    var restaurant = db.collection("restaurants").doc(restaurant_id)
   
     user.get()
     .then(data => {
       var user_data = data.data();
       user_data["notes"].push(note_id);
-      user_data["restaraunts"].push("Restaraunt");
-      user_data["restaraunts"] = [...new Set(user_data["restaraunts"])]
+      user_data["restaurants"].push(restaurant_id);
+      user_data["restaurants"] = [...new Set(user_data["restaurants"])]
       console.log(user_data)
       
       user.set(user_data)
       .then(console.log("users db update worked!"))
       .catch(e => {console.log("error in users db update: " + e)})
       
-      note.set({"author":sender, "message":message, "recipient":restaraunt_id})
+      note.set({"author":sender, "message":message, "recipient":restaurant_id})
       .then(console.log("notes db update worked!"))
       .catch(e => {console.log("error in notes db update: " + e)})
       
-      restaraunt.set({"name":recipient, "url": "URL", "location":{"lat": 0, "long": 0}})
-      .then(console.log("restaraunts db update worked!"))
-      .catch(e => {console.log("error in restaraunts db update: " + e)})
+      restaurant.set({"name":recipient, "url": "URL", "location":{"lat": 0, "long": 0}})
+      .then(console.log("restaurants db update worked!"))
+      .catch(e => {console.log("error in restaurants db update: " + e)})
     })
     .catch(e => {console.log("error in user db get: " + e)});
     

@@ -22,7 +22,7 @@ function SignUp() {
             userRef.get()
             .then(results => {
               if (!results.exists) {
-                userRef.set({"name":user.displayName, "restaraunts":[], "notes":[]})
+                userRef.set({"name":user.displayName, "restaurants":[], "notes":[]})
                 .then(console.log("users db update worked!"))
                 .catch(e => {console.log("error in users db update: " + e)});          
               }
