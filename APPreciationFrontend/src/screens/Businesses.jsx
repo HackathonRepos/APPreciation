@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Flex, Text, Heading, Button, Select } from "@chakra-ui/react";
-import { stateList } from "../components/stateList";
+import { stateList } from "../dummydata/stateList";
 import stateCities from "state-cities";
 import { capitalCase } from "capital-case";
 
