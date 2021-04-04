@@ -1,8 +1,36 @@
 import React from "react";
+
 import { Flex, Text, Heading, Button, Center, Link } from "@chakra-ui/react";
 import { UnlockIcon } from "@chakra-ui/icons";
+import firebase from "firebase";
+import { useHistory } from "react-router";
 
 function SignIn() {
+  const history = useHistory();
+  const signInWithGoogle = () => {
+    firebase
+      .auth()
+      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .then(() => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase
+          .auth()
+          .signInWithPopup(provider)
+          .then((result) => {
+            const user = result.user;
+            console.log("Signed In");
+            history.push("/businesses");
+          })
+          .catch((error) => {
+            console.log(error);
+            history.push("/");
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+        history.push("/");
+      });
+  };
   return (
     <Flex flexDirection="row" h="100vh">
       <Flex flex="1" className="Landing-Background" />
@@ -18,7 +46,12 @@ function SignIn() {
             <Flex justifyContent="flex-end">
               <Text marginTop="40px">Thanks for coming back again!</Text>
             </Flex>
-            <Button colorScheme="teal" size="lg" marginTop="100px">
+            <Button
+              colorScheme="teal"
+              size="lg"
+              marginTop="100px"
+              onClick={() => signInWithGoogle()}
+            >
               <UnlockIcon marginRight="30px" />
               Sign In With Google
             </Button>

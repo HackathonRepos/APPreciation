@@ -21,7 +21,7 @@ function App() {
       <Route exact path="/signup" component={SignUp} />
       {/* Authenticated Ones */}
       <Route exact path="/dashboard" component={Dashboard} />
-      <Route exact path="/noteform" component={NoteForm} />
+      <Route exact path="/noteform/:businessid" component={NoteForm} />
       <Route exact path="/businesses" component={Businesses} />
     </Switch>
   );
