@@ -25,31 +25,67 @@ function NoteForm() {
     <Flex
       flexDirection="column"
       height="100vh"
-      backgroundColor="gray.200"
+      backgroundColor="gray.100"
       justifyContent="center"
-      alignItems="center"
     >
-      <Heading>Submit your appreciation/thank you note here!</Heading>
-      <Text>Please fill out all the fields as they are necessary</Text>
+      <Heading color="teal.600" marginBottom="10px">
+        Submit your appreciation/thank you note here.
+      </Heading>
+      <Text color="teal.500" marginBottom="30px">
+        Please fill out all the fields as they are necessary
+      </Text>
       <Flex flexDirection="column">
-        <FormLabel htmlFor="sender">Sender</FormLabel>
-        <Input name="sender" value={sender} readOnly />
+        <FormLabel htmlFor="sender" color="teal.500">
+          Sender
+        </FormLabel>
+        <Input
+          name="sender"
+          value={sender}
+          readOnly
+          color="teal.700"
+          borderColor="teal.600"
+          focusBorderColor="teal.700"
+          backgroundColor="teal.50"
+          fontWeight="bold"
+        />
       </Flex>
       <Flex flexDirection="column">
-        <FormLabel htmlFor="recipient">Recipient</FormLabel>
-        <Input name="recipient" value={recipient} readOnly />
+        <FormLabel htmlFor="recipient" color="teal.500">
+          Recipient
+        </FormLabel>
+        <Input
+          name="recipient"
+          value={recipient}
+          readOnly
+          color="teal.700"
+          borderColor="teal.600"
+          focusBorderColor="teal.700"
+          backgroundColor="teal.50"
+          fontWeight="bold"
+        />
       </Flex>
       <Flex flexDirection="column">
-        <FormLabel htmlFor="recipient">Message</FormLabel>
+        <FormLabel htmlFor="recipient" color="teal.500">
+          Message
+        </FormLabel>
         <Textarea
           placeholder="Enter your note here"
           value={message}
           onChange={(evt) => setMessage(evt.target.value)}
+          color="teal.700"
+          borderColor="teal.600"
+          focusBorderColor="teal.700"
+          backgroundColor="teal.50"
+          fontWeight="bold"
         />
       </Flex>
       <Flex>
-        <CloseButton size="lg" />
-        <Button>Submit</Button>
+        <Link href="/businesses">
+          <CloseButton size="lg" color="teal.300" />
+        </Link>
+        <Button colorScheme="teal" size="lg">
+          Button
+        </Button>
       </Flex>
     </Flex>
   );
