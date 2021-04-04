@@ -13,7 +13,10 @@ function Landing() {
         justifyContent="space-around"
       >
         <Flex flexDirection="row" justifyContent="space-between" m="10">
-          <StarIcon w="10" h="10" />
+          <Flex>
+            <StarIcon w="10" h="10" />
+            <Heading>APPreciate</Heading>
+          </Flex>
           <Box>
             <Link href="/signup" m="5" p="5">
               Sign Up
@@ -21,9 +24,15 @@ function Landing() {
             <Link href="/signin">Sign In</Link>
           </Box>
         </Flex>
-        <Flex justifyContent="center">
+        <Flex justifyContent="center" flexDirection="column">
           <Heading as="h1" size="4xl" marginLeft="25px" width="700px">
-            A Note and Donation for a Better Society
+            1.Donate
+          </Heading>
+          <Heading as="h1" size="4xl" marginLeft="25px" width="700px">
+            2.Leave a Note
+          </Heading>
+          <Heading as="h1" size="4xl" marginLeft="25px" width="700px">
+            3.Be Kind
           </Heading>
         </Flex>
         <Flex flexDirection="row" m="10">
