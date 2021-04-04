@@ -10,7 +10,7 @@ import Dashboard from "./screens/Dashboard";
 import NoteForm from "./screens/NoteForm";
 import Businesses from "./screens/Businesses";
 
-dotenv.config()
+dotenv.config();
 
 function App() {
   return (

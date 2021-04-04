@@ -1,16 +1,16 @@
 import React from "react";
-import Axios from "axios";
+import axios from "axios";
 
 function GenerateRestaraunts() {
-  var rest = [1, 2]
-  console.log(process.env)
+  var rest = [1, 2];
+  console.log(process.env);
   // TODO: Hit Anant with a POST request
-  return rest
+  return rest;
 }
 
 function Businesses() {
-  var restaraunts = GenerateRestaraunts()
-  console.log(restaraunts.length)
+  var restaraunts = GenerateRestaraunts();
+  console.log(restaraunts.length);
   return (
     <div>
       <p>Buisnesses</p>
