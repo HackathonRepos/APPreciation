@@ -21,6 +21,7 @@ def index():
 
 @app.route("/business_search")
 def business_search():
+    print(requests.args)
     term = request.args.get("term", None)
     if term == None:
         print("No term provided for business search, returning nothing")
@@ -31,6 +32,7 @@ def business_search():
             headers=get_auth_dict(get_yelp_access_token()))
     if response.status_code == 200:
         print("Got 200 for business search")
+        print(response.json())
         return json.dumps(response.json())
     else:
         print("Received non-200 response({}) for business search, returning empty response".format(response.status_code))
@@ -58,19 +60,6 @@ def autocomplete():
 def get_yelp_access_token():
 
     return YELP_ACCESS_TOKEN
-    # WARNING: Ideally we would also expire the token. An expiry is sent with the token which we ignore.
-    """if YELP_ACCESS_TOKEN in session:
-        print "access token found in session"
-    else:
-        print "access token needs to be retrieved"
-        response = requests.post('https://api.yelp.com/oauth2/token', data=config.yelp_api_auth)
-        if response.status_code == 200:
-            session[YELP_ACCESS_TOKEN] = response.json()['access_token']
-            print "stored access token in session:", session[YELP_ACCESS_TOKEN]
-        else:
-            raise RuntimeError("Unable to get token, received status code " + str(response.response))
-    
-    return session[YELP_ACCESS_TOKEN]"""
 
 
 def get_search_params(term, latitude=LATITUDE, longitude=LONGITUDE):
