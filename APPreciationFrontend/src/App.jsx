@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles/App.css";
+import dotenv from "dotenv";
 
 import { Switch, Route } from "react-router-dom";
 import Landing from "./screens/Landing";
@@ -8,6 +9,8 @@ import SignUp from "./screens/SignUp";
 import Dashboard from "./screens/Dashboard";
 import NoteForm from "./screens/NoteForm";
 import Businesses from "./screens/Businesses";
+
+dotenv.config();
 
 function App() {
   return (
@@ -18,7 +21,7 @@ function App() {
       <Route exact path="/signup" component={SignUp} />
       {/* Authenticated Ones */}
       <Route exact path="/dashboard" component={Dashboard} />
-      <Route exact path="/noteform" component={NoteForm} />
+      <Route exact path="/noteform/:businessid" component={NoteForm} />
       <Route exact path="/businesses" component={Businesses} />
     </Switch>
   );
