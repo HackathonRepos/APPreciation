@@ -6,7 +6,7 @@ import requests
 import json
 
 app = Flask(__name__)
-app.secret_key = config.secret_session_key
+#app.secret_key = config.secret_session_key
 
 LATITUDE = 37.786882
 LONGITUDE = -122.399972
@@ -27,7 +27,7 @@ def business_search():
         print("No term provided for business search, returning nothing")
         return EMPTY_RESPONSE
 
-    response = requests.get('https:/#!/usr/bin/env python/api.yelp.com/v3/businesses/search',
+    response = requests.get('python/api.yelp.com/v3/businesses/search',
             params=get_search_params(term),
             headers=get_auth_dict(get_yelp_access_token()))
     if response.status_code == 200:
