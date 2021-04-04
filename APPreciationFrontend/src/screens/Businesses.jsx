@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
-import { Flex, Text, Heading, Button, Select } from "@chakra-ui/react";
 import { stateList } from "../dummydata/stateList";
 import stateCities from "state-cities";
 import { capitalCase } from "capital-case";
+
+import { Flex, Text, Heading, Button, Select } from "@chakra-ui/react";
+import BusinessCard from "../components/BusinessCard";
 
 function Businesses() {
   const [state, setGeoState] = useState("California");
@@ -47,6 +49,7 @@ function Businesses() {
           {disabled ? "Select Another City" : "View Businesses"}
         </Button>
       </Flex>
+      <BusinessCard />
     </Flex>
   );
 }
