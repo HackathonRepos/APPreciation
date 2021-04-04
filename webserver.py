@@ -14,7 +14,7 @@ YELP_ACCESS_TOKEN = "cF6wMa675BUGiGhZ8pMVzfLNTpaNMVur82KKan9_kWcYmBX_mc6WIV0QVaC
 EMPTY_RESPONSE = json.dumps('')
 
 
-@app.route("/")
+@app.route("/index")
 def index():
     return render_template('index.html')
 
