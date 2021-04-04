@@ -39,7 +39,7 @@ function Landing() {
           </Link>
         </Flex>
       </Flex>
-      <Flex flex="5" className="Landing-Background"></Flex>
+      <Flex flex="5" className="Landing-Background" />
     </Flex>
   );
 }
