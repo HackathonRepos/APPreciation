@@ -6,7 +6,7 @@ import { capitalCase } from "capital-case";
 
 import { Flex, Heading, Button, Select } from "@chakra-ui/react";
 import BusinessCard from "../components/BusinessCard";
-import { mockData } from "../dummydata/mockData";
+import { mockData } from "../dummydata/mockdata.js";
 
 function Businesses() {
   const [state, setGeoState] = useState("California");
