@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 from flask import Flask, render_template, session, request
-import config
 import requests
 import json
 
