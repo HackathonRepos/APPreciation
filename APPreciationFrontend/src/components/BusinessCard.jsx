@@ -27,12 +27,14 @@ function BusinessCard(props) {
         w="35px"
         h="35px"
       />
-      <Heading>Business Name</Heading>
+      <Heading>{props.businessName}</Heading>
       <Divider />
-      <Text marginTop="10px">1234 Mouse Lane, San Jose, CA</Text>
-      <Text marginTop="10px">How to purchase:</Text>
+      <Text marginTop="10px">{props.address}</Text>
+      <Text marginTop="10px">
+        {props.pickup.length > 0 ? "How to purchase:" : null}
+      </Text>
       <UnorderedList>
-        {["pickup", "delivery"].map((method, index) => (
+        {props.pickup.map((method, index) => (
           <ListItem key={index}>{method}</ListItem>
         ))}
       </UnorderedList>

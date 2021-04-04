@@ -1,4 +1,4 @@
-export let dummyData = {
+export let mockData = {
   total: 8228,
   businesses: [
     {
