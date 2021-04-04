@@ -10,7 +10,7 @@ app.secret_key = config.secret_session_key
 
 LATITUDE = 37.786882
 LONGITUDE = -122.399972
-YELP_ACCESS_TOKEN = "yelp_access_token"
+YELP_ACCESS_TOKEN = "cF6wMa675BUGiGhZ8pMVzfLNTpaNMVur82KKan9_kWcYmBX_mc6WIV0QVaCHGn5-ogLT_x0ck2C5cIUiJMixfGavxErAIkBdUxpLbEOyAPtndQPAcOdwYquPB_toYHYx"
 EMPTY_RESPONSE = json.dumps('')
 
 
@@ -56,8 +56,10 @@ def autocomplete():
 
 
 def get_yelp_access_token():
+
+    return YELP_ACCESS_TOKEN
     # WARNING: Ideally we would also expire the token. An expiry is sent with the token which we ignore.
-    if YELP_ACCESS_TOKEN in session:
+    """if YELP_ACCESS_TOKEN in session:
         print "access token found in session"
     else:
         print "access token needs to be retrieved"
@@ -68,10 +70,11 @@ def get_yelp_access_token():
         else:
             raise RuntimeError("Unable to get token, received status code " + str(response.response))
     
-    return session[YELP_ACCESS_TOKEN]
+    return session[YELP_ACCESS_TOKEN]"""
 
 
 def get_search_params(term, latitude=LATITUDE, longitude=LONGITUDE):
+    requests.post('')
     return {'term': term, 'latitude' : latitude, 'longitude' : longitude}
 
 
