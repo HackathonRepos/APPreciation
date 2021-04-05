@@ -28,7 +28,10 @@ function Businesses() {
           .split(" ")
           .join("+")}+${state}`
       )
-      .then(({ data }) => setBusinesses(data["businesses"]))
+      .then(({ data }) => {
+        console.log(data["businesses"]);
+        setBusinesses(data["businesses"]);
+      })
       .catch((err) => console.log(err));
   };
   const cards = businesses.map((business, index) => (

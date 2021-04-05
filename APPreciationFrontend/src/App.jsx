@@ -9,6 +9,7 @@ import SignUp from "./screens/SignUp";
 import Dashboard from "./screens/Dashboard";
 import NoteForm from "./screens/NoteForm";
 import Businesses from "./screens/Businesses";
+import Submit from "./screens/Submit";
 
 dotenv.config();
 
@@ -21,8 +22,9 @@ function App() {
       <Route exact path="/signup" component={SignUp} />
       {/* Authenticated Ones */}
       <Route exact path="/dashboard" component={Dashboard} />
-      <Route exact path="/noteform/:businessid" component={NoteForm} />
       <Route exact path="/businesses" component={Businesses} />
+      <Route exact path="/noteform/:businessid" component={NoteForm} />
+      <Route exact path="/submit/:businessname" component={Submit} />
     </Switch>
   );
 }
