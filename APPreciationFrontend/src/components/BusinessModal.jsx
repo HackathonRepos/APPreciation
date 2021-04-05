@@ -136,9 +136,9 @@ function BusinessModal(props) {
               mr={3}
               onClick={() => {
                 toast({
-                  title: "Business Saved in Dashboard",
+                  title: "Business Saved in Dashboard.",
                   description:
-                    "Please check your dashboard to check out your saved businesses",
+                    "Please check your dashboard to see your saved businesses!",
                   status: "success",
                   duration: 9000,
                   isClosable: true,
