@@ -13,6 +13,7 @@ import {
   Flex,
   Heading,
   Link,
+  Divider,
 } from "@chakra-ui/react";
 
 function BusinessModal(props) {
@@ -24,7 +25,7 @@ function BusinessModal(props) {
       <Modal
         isOpen={true}
         onClose={onClose}
-        size="5xl"
+        size="4xl"
         motionPreset="slideInBottom"
         isCentered
       >
@@ -36,31 +37,47 @@ function BusinessModal(props) {
             <Flex alignItems="center">
               <Image
                 src="https://s3-media1.fl.yelpcdn.com/bphoto/-g5mYPUvxsX7hfor95Iq-Q/o.jpg"
-                w="500px"
-                h="500px"
+                w="400px"
+                h="400px"
               />
               <Flex
                 flexDirection="column"
                 alignItems="center"
                 marginLeft="30px"
               >
-                <Heading size="lg">Rating: 4.5/5</Heading>
-                <Heading size="lg">Phone Number: +14084772773</Heading>
-                <Heading size="lg">Price: $$$</Heading>
-                <Heading size="lg">Open: Yes</Heading>
-                <Heading size="lg">Reviews: 9999</Heading>
-                <Heading size="sm">
-                  Address:{" "}
+                <Heading size="lg" marginBottom="15px" marginTop="15px">
+                  Rating: 4.5/5
+                </Heading>
+                <Divider />
+                <Heading size="lg" marginBottom="15px" marginTop="15px">
+                  Price: $$$
+                </Heading>
+                <Divider />
+                <Heading size="lg" marginBottom="15px" marginTop="15px">
+                  Open: Yes
+                </Heading>
+                <Divider />
+                <Heading size="lg" marginBottom="15px" marginTop="15px">
+                  Reviews: 9999
+                </Heading>
+                <Divider />
+                <Heading size="md" marginBottom="15px" marginTop="15px">
+                  Phone Number: +14084772773
+                </Heading>
+                <Divider />
+                <Heading size="sm" marginBottom="15px" marginTop="15px">
+                  Address:
                   {["1628 Hostetter Rd", "Ste F", "San Jose, CA 95131"].join(
                     " "
                   )}
                 </Heading>
-                <Flex>
+                <Divider />
+                <Flex marginTop="20px">
                   <Link
                     style={{ textDecoration: "none" }}
                     href="https://www.yelp.com/biz/falafels-drive-in-san-jose?adjust_creative=oAXFtXos6R7jgkEpPDSmQA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=oAXFtXos6R7jgkEpPDSmQA"
                   >
-                    <Button colorScheme="teal">
+                    <Button colorScheme="teal" marginRight="15px">
                       Contribute to their Business
                     </Button>
                   </Link>
