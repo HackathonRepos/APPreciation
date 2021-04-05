@@ -4,6 +4,7 @@ import { Flex, Text, Heading, Button, Center, Link } from "@chakra-ui/react";
 import { UnlockIcon } from "@chakra-ui/icons";
 import firebase from "firebase";
 import { useHistory } from "react-router";
+import Fade from "react-reveal/Fade";
 
 function SignUp() {
   const history = useHistory();
@@ -18,17 +19,26 @@ function SignUp() {
           .signInWithPopup(provider)
           .then((result) => {
             var user = firebase.auth().currentUser;
-            var userRef = firebase.firestore().collection("users").doc(user.uid)
-            userRef.get()
-            .then(results => {
-              if (!results.exists) {
-                userRef.set({"name":user.displayName, "restaurants":[], "notes":[]})
-                .then(console.log("users db update worked!"))
-                .catch(e => {console.log("error in users db update: " + e)});          
-              }
-            })
-            .catch(e => {console.log("error in getting users db: " + e)}); 
-            
+            var userRef = firebase
+              .firestore()
+              .collection("users")
+              .doc(user.uid);
+            userRef
+              .get()
+              .then((results) => {
+                if (!results.exists) {
+                  userRef
+                    .set({ name: user.displayName, restaurants: [], notes: [] })
+                    .then(console.log("users db update worked!"))
+                    .catch((e) => {
+                      console.log("error in users db update: " + e);
+                    });
+                }
+              })
+              .catch((e) => {
+                console.log("error in getting users db: " + e);
+              });
+
             console.log("Signed In");
             history.push("/businesses");
           })
@@ -52,26 +62,28 @@ function SignUp() {
         justifyContent="center"
       >
         <Center>
-          <Flex flexDirection="column" marginRight="15px" marginLeft="15px">
-            <Heading size="4xl">Sign Up With Google</Heading>
-            <Flex justifyContent="flex-end">
-              <Text marginTop="40px">
-                We're excited for you to try this out!
-              </Text>
+          <Fade>
+            <Flex flexDirection="column" marginRight="15px" marginLeft="15px">
+              <Heading size="4xl">Sign Up With Google</Heading>
+              <Flex justifyContent="flex-end">
+                <Text marginTop="40px">
+                  We're excited for you to try this out!
+                </Text>
+              </Flex>
+              <Button
+                colorScheme="teal"
+                size="lg"
+                marginTop="100px"
+                onClick={() => signInWithGoogle()}
+              >
+                <UnlockIcon marginRight="30px" />
+                Sign Up With Google
+              </Button>
+              <Link href="/signin" marginTop="25px">
+                Do you already have an account?
+              </Link>
             </Flex>
-            <Button
-              colorScheme="teal"
-              size="lg"
-              marginTop="100px"
-              onClick={() => signInWithGoogle()}
-            >
-              <UnlockIcon marginRight="30px" />
-              Sign Up With Google
-            </Button>
-            <Link href="/signin" marginTop="25px">
-              Do you already have an account?
-            </Link>
-          </Flex>
+          </Fade>
         </Center>
       </Flex>
       <Flex flex="1" className="Landing-Background" />
