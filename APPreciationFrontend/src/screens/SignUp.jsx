@@ -16,7 +16,7 @@ function SignUp() {
         const provider = new firebase.auth.GoogleAuthProvider();
         firebase
           .auth()
-          .signInWithPopup(provider)
+          .signInWithPopup(provider) 
           .then((result) => {
             var user = firebase.auth().currentUser;
             var userRef = firebase
