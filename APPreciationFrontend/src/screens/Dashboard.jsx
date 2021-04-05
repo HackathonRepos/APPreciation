@@ -1,6 +1,8 @@
 import React from "react";
+
 import firebase from "../firebase";
 import { withRouter } from "react-router-dom";
+import { Flex, Text, Heading, Button, Center, Link } from "@chakra-ui/react";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -26,12 +28,7 @@ class Dashboard extends React.Component {
     return restaurants;
   }
   render() {
-    return (
-      <div>
-        <p>Dashboard</p>
-        {this.state.restaurantList}
-      </div>
-    );
+    return <Flex></Flex>;
   }
 }
 

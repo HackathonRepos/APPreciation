@@ -13,9 +13,12 @@ import {
   Heading,
   Link,
   Divider,
+  useToast,
 } from "@chakra-ui/react";
 
 function BusinessModal(props) {
+  const toast = useToast();
+  const saveBusiness = () => {};
   return (
     <>
       <Modal
@@ -65,14 +68,15 @@ function BusinessModal(props) {
                 <Flex marginTop="20px">
                   <Link
                     style={{ textDecoration: "none" }}
-                    href="https://www.yelp.com/biz/falafels-drive-in-san-jose?adjust_creative=oAXFtXos6R7jgkEpPDSmQA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=oAXFtXos6R7jgkEpPDSmQA"
+                    href={props.url}
+                    isExternal
                   >
                     <Button colorScheme="teal" marginRight="15px">
                       Contribute to their Business
                     </Button>
                   </Link>
                   <Link
-                    href={`/noteform/${"Gen Korean BBQ House"
+                    href={`/noteform/${props.businessName
                       .replace(/\s/g, "-")
                       .toLowerCase()}`}
                     style={{ textDecoration: "none" }}
@@ -84,8 +88,25 @@ function BusinessModal(props) {
             </Flex>
           </ModalBody>
           <ModalFooter>
+            <Button
+              colorScheme="green"
+              mr={3}
+              onClick={() => {
+                toast({
+                  title: "Business Saved in Dashboard",
+                  description:
+                    "Please check your dashboard to check out your saved businesses",
+                  status: "success",
+                  duration: 9000,
+                  isClosable: true,
+                });
+                saveBusiness();
+              }}
+            >
+              Save Business
+            </Button>
             <Button colorScheme="blue" mr={3} onClick={props.onClose}>
-              Close
+              Close X
             </Button>
           </ModalFooter>
         </ModalContent>
