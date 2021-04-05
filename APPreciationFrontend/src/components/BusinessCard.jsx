@@ -25,7 +25,19 @@ function BusinessCard(props) {
       m="20px"
       boxShadow="2xl"
     >
-      <BuisnessModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+      <BuisnessModal
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+        businessName={props.businessName}
+        price={props.price}
+        rating={props.rating}
+        open={props.open ? "Yes" : "No"}
+        reviews={props.reviews}
+        number={props.number}
+        address={props.address}
+        imageUrl={props.imageUrl}
+      />
       <Image src={props.imageUrl} w="35px" h="35px" />
       <Heading>{props.businessName}</Heading>
       <Divider />

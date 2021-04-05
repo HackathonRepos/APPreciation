@@ -8,7 +8,6 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-  useDisclosure,
   Image,
   Flex,
   Heading,
@@ -28,45 +27,39 @@ function BusinessModal(props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Gen Korean BBQ House</ModalHeader>
+          <ModalHeader>{props.businessName}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Flex alignItems="center">
-              <Image
-                src="https://s3-media1.fl.yelpcdn.com/bphoto/-g5mYPUvxsX7hfor95Iq-Q/o.jpg"
-                w="400px"
-                h="400px"
-              />
+              <Image src={props.imageUrl} w="400px" h="400px" />
               <Flex
                 flexDirection="column"
                 alignItems="center"
                 marginLeft="30px"
               >
                 <Heading size="lg" marginBottom="15px" marginTop="15px">
-                  Rating: 4.5/5
+                  Rating: {props.rating}/5
                 </Heading>
                 <Divider />
                 <Heading size="lg" marginBottom="15px" marginTop="15px">
-                  Price: $$$
+                  Price: {props.price}
                 </Heading>
                 <Divider />
                 <Heading size="lg" marginBottom="15px" marginTop="15px">
-                  Open: Yes
+                  Open: {props.open}
                 </Heading>
                 <Divider />
                 <Heading size="lg" marginBottom="15px" marginTop="15px">
-                  Reviews: 9999
+                  Reviews: {props.reviews}
                 </Heading>
                 <Divider />
                 <Heading size="md" marginBottom="15px" marginTop="15px">
-                  Phone Number: +14084772773
+                  Phone Number: {props.number}
                 </Heading>
                 <Divider />
                 <Heading size="sm" marginBottom="15px" marginTop="15px">
                   Address:
-                  {["1628 Hostetter Rd", "Ste F", "San Jose, CA 95131"].join(
-                    " "
-                  )}
+                  {props.address}
                 </Heading>
                 <Divider />
                 <Flex marginTop="20px">
@@ -80,7 +73,7 @@ function BusinessModal(props) {
                   </Link>
                   <Link
                     href={`/noteform/${"Gen Korean BBQ House"
-                      .replace(/\s/g, "")
+                      .replace(/\s/g, "-")
                       .toLowerCase()}`}
                     style={{ textDecoration: "none" }}
                   >
