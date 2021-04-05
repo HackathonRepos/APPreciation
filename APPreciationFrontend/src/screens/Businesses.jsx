@@ -6,14 +6,7 @@ import { capitalCase } from "capital-case";
 import firebase from "firebase";
 import { useHistory } from "react-router-dom";
 
-import {
-  Flex,
-  Heading,
-  Button,
-  Select,
-  CloseButton,
-  Link,
-} from "@chakra-ui/react";
+import { Flex, Heading, Button, Select, Link } from "@chakra-ui/react";
 import BusinessCard from "../components/BusinessCard";
 import { mockData } from "../dummydata/mockdata.js";
 import axios from "axios";
@@ -101,8 +94,10 @@ function Businesses() {
         </Select>
       </Flex>
       <Flex p="20px" justifyContent="flex-end" alignItems="center">
-        <Link href="/dashboard">
-          <CloseButton color="teal" marginRight="15px" w="40px" h="40px" />
+        <Link style={{ textDecoration: "none" }} href="/dashboard">
+          <Button marginRight="15px" colorScheme="pink" size="lg">
+            Dashboard
+          </Button>
         </Link>
         <Button
           colorScheme="teal"
