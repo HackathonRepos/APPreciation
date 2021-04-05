@@ -2,7 +2,7 @@ import React from "react";
 
 import firebase from "../firebase";
 import { withRouter } from "react-router-dom";
-import { Flex, Text, Heading, Button, Center, Link } from "@chakra-ui/react";
+import { Flex, Heading, Button, Link } from "@chakra-ui/react";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class Dashboard extends React.Component {
     this.state = {
       restaurantList: [],
       user_id: "",
+      displayName: "",
       recipients: 0,
       words: 0,
       notes: 0,
@@ -18,7 +19,7 @@ class Dashboard extends React.Component {
     firebase.auth().onAuthStateChanged((user) => {
       console.log(user);
       console.log(user.uid);
-      this.setState({ user_id: user.uid });
+      this.setState({ user_id: user.uid, displayName: user.displayName });
       if (user) {
         console.log("Signed In");
         let db = firebase.firestore();
@@ -55,17 +56,8 @@ class Dashboard extends React.Component {
     });
   }
   logOut() {
-    firebase
-      .auth()
-      .signOut()
-      .then(
-        function () {
-          this.props.history.push("/");
-        },
-        function (error) {
-          this.props.history.push("/");
-        }
-      );
+    firebase.auth().signOut();
+    this.props.history.push("/");
   }
   render() {
     return (
@@ -76,16 +68,20 @@ class Dashboard extends React.Component {
         backgroundColor="gray.200"
       >
         <Flex justifyContent="space-between" p="30px">
-          <Heading>Dashboard</Heading>
+          <Heading>{this.state.displayName}'s Dashboard</Heading>
           <Flex>
-            <Button colorScheme="teal" size="lg" marginRight="15px">
-              Log Out
-            </Button>
-            <Link style={{ textDecoration: "none" }} href="/businesses">
+            <Link
+              style={{ textDecoration: "none" }}
+              href="/businesses"
+              marginRight="15px"
+            >
               <Button colorScheme="blue" size="lg">
                 Businesses
               </Button>
             </Link>
+            <Button colorScheme="teal" size="lg" onClick={() => this.logOut()}>
+              Log Out
+            </Button>
           </Flex>
         </Flex>
         <Flex flexDirection="column" p="30px">
@@ -102,8 +98,24 @@ class Dashboard extends React.Component {
         </Flex>
         <Flex direction="column" p="30px">
           <Heading>Saved Businesses:</Heading>
-          <Flex flexWrap="wrap" justifyContent="center">
-            {/* <Text>{this.state.restaurantList}</Text> */}
+          <Flex flexWrap="wrap" justifyContent="center" flexDirection="row">
+            {this.state.restaurantList.map((bus, index) => (
+              <Flex flexDirection="column" key={index} p="15px" m="20px">
+                <Link
+                  style={{ textDecoration: "none" }}
+                  href={bus["url"]}
+                  isExternal
+                >
+                  <Button
+                    colorScheme="teal"
+                    size="lg"
+                    backgroundColor="teal.300"
+                  >
+                    {bus["name"]}
+                  </Button>
+                </Link>
+              </Flex>
+            ))}
           </Flex>
         </Flex>
       </Flex>
