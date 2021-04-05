@@ -76,6 +76,19 @@ function NoteForm() {
       .catch((e) => {
         console.log("error in user db get: " + e);
       });
+
+      // const accountSid = process.env.REACT_APP_TWILIO_ACCOUNT_SID;
+      // const authToken = process.env.REACT_APP_TWILIO_AUTH_TOKEN;
+      // const client = require('twilio')(accountSid, authToken);
+      
+      // client.messages
+      //   .create({
+      //      body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+      //      from: '+16507205984',
+      //      to: <ADD BUSINESS NUMBER HERE>
+      //    })
+      //   .then(message => console.log(message.sid));      
+
   }
   const history = useHistory();
   useEffect(
