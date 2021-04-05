@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import firebase from "../firebase";
 import { v4 as uuidv4 } from "uuid";
+import { useHistory } from "react-router-dom";
 
 import {
   Flex,
@@ -19,44 +20,59 @@ function NoteForm() {
   const [sender] = useState("Sender");
   const [recipient] = useState("Recipient");
   const [message, setMessage] = useState("");
-  
+
   function UpdateDBs() {
     var db = firebase.firestore();
-  
-    // var user_id = "user-id"
-    var user_id = "TMTD86D3yZN3zfMT6xsgp0y4LTW2"
-    var note_id = uuidv4()
-    var restaurant_id = uuidv4()
+    var user_id = "TMTD86D3yZN3zfMT6xsgp0y4LTW2";
+    var note_id = uuidv4();
+    var restaurant_id = uuidv4();
 
     var user = db.collection("users").doc(user_id);
-    var note = db.collection("notes").doc(note_id)
-    var restaurant = db.collection("restaurants").doc(restaurant_id)
-  
-    user.get()
-    .then(data => {
-      var user_data = data.data();
-      user_data["notes"].push(note_id);
-      user_data["restaurants"].push(restaurant_id);
-      user_data["restaurants"] = [...new Set(user_data["restaurants"])]
-      console.log(user_data)
-      
-      user.set(user_data)
-      .then(console.log("users db update worked!"))
-      .catch(e => {console.log("error in users db update: " + e)})
-      
-      note.set({"author":sender, "message":message, "recipient":restaurant_id})
-      .then(console.log("notes db update worked!"))
-      .catch(e => {console.log("error in notes db update: " + e)})
-      
-      restaurant.set({"name":recipient, "url": "URL", "location":{"lat": 0, "long": 0}})
-      .then(console.log("restaurants db update worked!"))
-      .catch(e => {console.log("error in restaurants db update: " + e)})
-    })
-    .catch(e => {console.log("error in user db get: " + e)});
-    
-  }  
-  
-  
+    var note = db.collection("notes").doc(note_id);
+    var restaurant = db.collection("restaurants").doc(restaurant_id);
+
+    user
+      .get()
+      .then((data) => {
+        var user_data = data.data();
+        user_data["notes"].push(note_id);
+        user_data["restaurants"].push(restaurant_id);
+        user_data["restaurants"] = [...new Set(user_data["restaurants"])];
+        console.log(user_data);
+
+        user
+          .set(user_data)
+          .then(console.log("users db update worked!"))
+          .catch((e) => {
+            console.log("error in users db update: " + e);
+          });
+
+        note
+          .set({ author: sender, message: message, recipient: restaurant_id })
+          .then(console.log("notes db update worked!"))
+          .catch((e) => {
+            console.log("error in notes db update: " + e);
+          });
+
+        restaurant
+          .set({ name: recipient, url: "URL", location: { lat: 0, long: 0 } })
+          .then(console.log("restaurants db update worked!"))
+          .catch((e) => {
+            console.log("error in restaurants db update: " + e);
+          });
+      })
+      .catch((e) => {
+        console.log("error in user db get: " + e);
+      });
+  }
+  const history = useHistory();
+  useEffect(() =>
+    firebase
+      .auth()
+      .onAuthStateChanged((user) =>
+        user ? console.log("Signed In") : history.push("/signup")
+      )
+  );
   return (
     <Flex
       flexDirection="column"
@@ -136,7 +152,12 @@ function NoteForm() {
             marginRight="15px"
             onClick={() => setMessage("")}
           />
-          <Button colorScheme="teal" size="lg" disabled={message.length === 0} onClick={UpdateDBs}>
+          <Button
+            colorScheme="teal"
+            size="lg"
+            disabled={message.length === 0}
+            onClick={UpdateDBs}
+          >
             Submit
           </Button>
         </Flex>

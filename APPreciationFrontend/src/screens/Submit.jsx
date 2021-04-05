@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Flex, Heading, Button, Link } from "@chakra-ui/react";
 import firebase from "firebase";
@@ -19,6 +19,13 @@ function Submit() {
         }
       );
   };
+  useEffect(() =>
+    firebase
+      .auth()
+      .onAuthStateChanged((user) =>
+        user ? console.log("Signed In") : history.push("/signup")
+      )
+  );
   return (
     <Flex
       flexDirection="column"

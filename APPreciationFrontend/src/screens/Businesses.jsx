@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { stateList } from "../dummydata/stateList";
 import stateCities from "state-cities";
 import { capitalCase } from "capital-case";
+import firebase from "firebase";
+import { useHistory } from "react-router-dom";
 
 import {
   Flex,
@@ -21,6 +23,7 @@ function Businesses() {
   const [city, setCity] = useState("San Jose");
   const [disabled, setDisabled] = useState(false);
   const [businesses, setBusinesses] = useState(mockData["businesses"]);
+  const history = useHistory();
   const submitBusinesses = () => {
     axios
       .get(
@@ -49,6 +52,13 @@ function Businesses() {
       key={index}
     />
   ));
+  useEffect(() =>
+    firebase
+      .auth()
+      .onAuthStateChanged((user) =>
+        user ? console.log("Signed In") : history.push("/signup")
+      )
+  );
   return (
     <Flex
       flexDirection="column"
