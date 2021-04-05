@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import { Flex, Link, Heading, Box, Button } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
+import axios from "axios";
+
 function Landing() {
+  axios
+    .get("https://aydanpirani77.pythonanywhere.com/")
+    .then((results) => console.log("Server", results.statusText))
+    .catch((err) => console.log(err));
+
   return (
     <Flex flexDirection="row" h="100vh">
       <Flex

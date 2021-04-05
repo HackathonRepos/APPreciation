@@ -7,12 +7,24 @@ import { capitalCase } from "capital-case";
 import { Flex, Heading, Button, Select } from "@chakra-ui/react";
 import BusinessCard from "../components/BusinessCard";
 import { mockData } from "../dummydata/mockData";
+import axios from "axios";
 
 function Businesses() {
   const [state, setGeoState] = useState("California");
-  const [city, setCity] = useState("Mountain View");
+  const [city, setCity] = useState("San Jose");
   const [disabled, setDisabled] = useState(false);
-  const cards = mockData["businesses"].map((business, index) => (
+  const [businesses, setBusinesses] = useState(mockData["businesses"]);
+  const submitBusinesses = () => {
+    axios
+      .get(
+        `http://aydanpirani77.pythonanywhere.com/search_loc?query= |${city
+          .split(" ")
+          .join("+")}+${state}`
+      )
+      .then(({ data }) => setBusinesses(data["businesses"]))
+      .catch((err) => console.log(err));
+  };
+  const cards = businesses.map((business, index) => (
     <BusinessCard
       businessName={business["name"]}
       pickup={business["transactions"]}
@@ -24,10 +36,16 @@ function Businesses() {
         ", " +
         business["location"]["state"]
       }
+      key={index}
     />
   ));
   return (
-    <Flex flexDirection="column" height="100%" backgroundColor="gray.100">
+    <Flex
+      flexDirection="column"
+      height="100%"
+      minHeight="100vh"
+      backgroundColor="gray.100"
+    >
       <Flex>
         <Heading>View all businesses in the State of</Heading>
         <Select
@@ -59,7 +77,12 @@ function Businesses() {
         </Select>
       </Flex>
       <Flex>
-        <Button colorScheme="teal" size="lg" disabled={disabled}>
+        <Button
+          colorScheme="teal"
+          size="lg"
+          disabled={disabled}
+          onClick={() => submitBusinesses()}
+        >
           {disabled ? "Select Another City" : "View Businesses"}
         </Button>
       </Flex>
