@@ -4,7 +4,14 @@ import { stateList } from "../dummydata/stateList";
 import stateCities from "state-cities";
 import { capitalCase } from "capital-case";
 
-import { Flex, Heading, Button, Select } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  Button,
+  Select,
+  CloseButton,
+  Link,
+} from "@chakra-ui/react";
 import BusinessCard from "../components/BusinessCard";
 import { mockData } from "../dummydata/mockData";
 import axios from "axios";
@@ -46,13 +53,15 @@ function Businesses() {
       minHeight="100vh"
       backgroundColor="gray.100"
     >
-      <Flex>
-        <Heading>View all businesses in the State of</Heading>
+      <Flex p="20px">
+        <Heading flex="2">View all businesses in the State of</Heading>
         <Select
           flex="1"
           placeholder={state}
           onChange={(evt) => setGeoState(evt.target.value, setDisabled(true))}
           size="lg"
+          backgroundColor="teal.200"
+          color="teal.900"
         >
           {stateList.map((geoState, index) => (
             <option value={geoState} key={index}>
@@ -61,13 +70,15 @@ function Businesses() {
           ))}
         </Select>
       </Flex>
-      <Flex>
-        <Heading>And in the city of</Heading>
+      <Flex p="20px">
+        <Heading flex="2">And in the city of</Heading>
         <Select
           flex="1"
           placeholder={capitalCase(city)}
           size="lg"
           onChange={(evt) => setCity(evt.target.value, setDisabled(false))}
+          backgroundColor="teal.200"
+          color="teal.900"
         >
           {stateCities.getCities(state).map((cityItem, index) => (
             <option value={capitalCase(cityItem)} key={index}>
@@ -76,7 +87,10 @@ function Businesses() {
           ))}
         </Select>
       </Flex>
-      <Flex>
+      <Flex p="20px" justifyContent="flex-end" alignItems="center">
+        <Link href="/dashboard">
+          <CloseButton color="teal" marginRight="15px" w="40px" h="40px" />
+        </Link>
         <Button
           colorScheme="teal"
           size="lg"
