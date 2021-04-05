@@ -42,8 +42,8 @@ function Businesses() {
       businessName={business["name"]}
       pickup={business["transactions"]}
       imageUrl={business["image_url"]}
-      address={business["location"]["display_address"].join(" ")}
-      number={business["phone"]}
+      address={business["location"]["display_address"].join(", ")}
+      number={business["display_phone"]}
       reviews={business["review_count"]}
       rating={business["rating"]}
       open={!business["is_closed"]}

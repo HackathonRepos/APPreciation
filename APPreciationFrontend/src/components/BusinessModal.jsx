@@ -61,8 +61,7 @@ function BusinessModal(props) {
                 </Heading>
                 <Divider />
                 <Heading size="sm" marginBottom="15px" marginTop="15px">
-                  Address:
-                  {props.address}
+                  Address: {props.address}
                 </Heading>
                 <Divider />
                 <Flex marginTop="20px">
