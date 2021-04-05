@@ -48,6 +48,7 @@ function Businesses() {
       rating={business["rating"]}
       open={!business["is_closed"]}
       price={business["price"]}
+      url={business["url"]}
       key={index}
     />
   ));

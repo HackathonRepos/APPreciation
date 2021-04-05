@@ -37,6 +37,7 @@ function BusinessCard(props) {
         number={props.number}
         address={props.address}
         imageUrl={props.imageUrl}
+        url={props.url}
       />
       <Image src={props.imageUrl} w="35px" h="35px" />
       <Heading>{props.businessName}</Heading>
