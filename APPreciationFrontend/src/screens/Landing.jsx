@@ -29,7 +29,7 @@ function Landing() {
             </Flex>
             <Box>
               <Link href="/signup" m="5" p="5">
-                Sign Up
+                Sign UpS
               </Link>
               <Link href="/signin">Sign In</Link>
             </Box>
