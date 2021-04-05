@@ -9,9 +9,12 @@ import {
   Divider,
   UnorderedList,
   ListItem,
+  useDisclosure,
 } from "@chakra-ui/react";
+import BuisnessModal from "./BusinessModal";
 
 function BusinessCard(props) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Flex
       flexDirection="column"
@@ -22,6 +25,7 @@ function BusinessCard(props) {
       m="20px"
       boxShadow="2xl"
     >
+      <BuisnessModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
       <Image src={props.imageUrl} w="35px" h="35px" />
       <Heading>{props.businessName}</Heading>
       <Divider />
@@ -35,7 +39,7 @@ function BusinessCard(props) {
         ))}
       </UnorderedList>
       <Flex height="100%" alignItems="flex-end">
-        <Button colorScheme="teal" size="lg" m="10px">
+        <Button colorScheme="teal" size="lg" m="10px" onClick={onOpen}>
           Get Details
         </Button>
       </Flex>

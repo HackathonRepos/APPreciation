@@ -17,14 +17,11 @@ import {
 } from "@chakra-ui/react";
 
 function BusinessModal(props) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
-
       <Modal
-        isOpen={true}
-        onClose={onClose}
+        isOpen={props.isOpen}
+        onClose={props.onClose}
         size="4xl"
         motionPreset="slideInBottom"
         isCentered
@@ -94,7 +91,7 @@ function BusinessModal(props) {
             </Flex>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button colorScheme="blue" mr={3} onClick={props.onClose}>
               Close
             </Button>
           </ModalFooter>

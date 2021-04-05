@@ -15,7 +15,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import BusinessCard from "../components/BusinessCard";
-import BusinessModal from "../components/BusinessModal";
+import BuisnessModal from "../components/BusinessModal";
 import { mockData } from "../dummydata/mockData";
 import axios from "axios";
 
@@ -62,7 +62,6 @@ function Businesses() {
       backgroundColor="gray.100"
     >
       <Flex p="20px">
-        <BusinessModal />
         <Heading flex="2">View all businesses in the State of</Heading>
         <Select
           flex="1"
