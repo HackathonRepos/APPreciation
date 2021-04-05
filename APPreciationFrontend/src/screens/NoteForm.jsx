@@ -18,8 +18,10 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 
 function NoteForm() {
   let url = window.location.href.split("/");
-  let temp_recipient = url[url.length-1].split("-");
-  temp_recipient = temp_recipient.map(str => str[0].toUpperCase() + str.substring(1)).join(" ");
+  let temp_recipient = url[url.length - 1].split("-");
+  temp_recipient = temp_recipient
+    .map((str) => str[0].toUpperCase() + str.substring(1))
+    .join(" ");
 
   // console.log(firebase.auth().currentUser);
 
@@ -42,36 +44,48 @@ function NoteForm() {
         var user_data = data.data();
         user_data["recipients"].push(restaurant_id);
         user_data["recipients"] = [...new Set(user_data["recipients"])];
-        user_data["recipients_sent"] = user_data["recipients"].length
-        user_data["notes_written"] = user_data["notes_written"] + 1
-        user_data["words_written"] = user_data["words_written"] + words
+        user_data["recipients_sent"] = user_data["recipients"].length;
+        user_data["notes_written"] = user_data["notes_written"] + 1;
+        user_data["words_written"] = user_data["words_written"] + words;
 
-        user
-          .set(user_data)
-          .then(console.log("users db update worked!"))
-          .catch((e) => {
-            console.log("error in users db update: " + e);
-          });
+        try {
+          user
+            .set(user_data)
+            .then(console.log("users db update worked!"))
+            .catch((e) => {
+              console.log("error in users db update: " + e);
+            });
 
-        note
-          .set({ author: sender, message: message, recipient: restaurant_id, recipient_name: temp_recipient})
-          .then(console.log("notes db update worked!"))
-          .catch((e) => {
-            console.log("error in notes db update: " + e);
-          });
+          note
+            .set({
+              author: sender,
+              message: message,
+              recipient: restaurant_id,
+              recipient_name: temp_recipient,
+            })
+            .then(console.log("notes db update worked!"))
+            .catch((e) => {
+              console.log("error in notes db update: " + e);
+            });
+          history.push("/submit");
+        } catch (error) {
+          console.log(error);
+          history.push("/businesses");
+        }
       })
       .catch((e) => {
         console.log("error in user db get: " + e);
       });
   }
   const history = useHistory();
-  useEffect(() =>
-    firebase
-      .auth()
-      .onAuthStateChanged((user) => 
-        {setSender(user.displayName);
-        user ? console.log(user) : history.push("/signup")}
-      ), {});
+  useEffect(
+    () =>
+      firebase.auth().onAuthStateChanged((user) => {
+        setSender(user.displayName);
+        user ? console.log(user) : history.push("/signup");
+      }),
+    {}
+  );
   return (
     <Flex
       flexDirection="column"
