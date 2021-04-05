@@ -60,7 +60,7 @@ function Businesses() {
       backgroundColor="gray.100"
     >
       <Flex p="20px">
-        <Heading flex="2">View all businesses in the State of</Heading>
+        <Heading flex="2">View all businesses in the state of</Heading>
         <Select
           flex="1"
           placeholder={state}
@@ -77,7 +77,7 @@ function Businesses() {
         </Select>
       </Flex>
       <Flex p="20px">
-        <Heading flex="2">And in the city of</Heading>
+        <Heading flex="2">And the city of</Heading>
         <Select
           flex="1"
           placeholder={capitalCase(city)}

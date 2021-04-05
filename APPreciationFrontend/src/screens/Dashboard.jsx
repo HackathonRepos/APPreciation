@@ -86,14 +86,13 @@ class Dashboard extends React.Component {
         </Flex>
         <Flex flexDirection="column" p="30px">
           <Heading size="2xl" color="teal.900">
-            <Heading size="3xl">{this.state.words}</Heading> Words Written!
+            <Heading size="3xl">{this.state.words} words written!</Heading>
           </Heading>
           <Heading size="2xl" color="blue.900">
-            <Heading size="3xl">{this.state.notes}</Heading> Notes Sent!
+            <Heading size="3xl">{this.state.notes} notes sent! </Heading>
           </Heading>
           <Heading size="2xl" color="cyan.900">
-            <Heading size="3xl">{this.state.recipients}</Heading> Businesses
-            Thanked!
+            <Heading size="3xl">{this.state.recipients} businesses thanked!</Heading>
           </Heading>
         </Flex>
         <Flex direction="column" p="30px">

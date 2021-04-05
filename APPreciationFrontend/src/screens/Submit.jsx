@@ -37,7 +37,7 @@ function Submit() {
         Thanks for taking the time to type out a note to a business!
       </Heading>
       <Heading size="lg" marginBottom="25px">
-        We'll make sure to forwards it to them during this pandemic
+        Your message has been sent!
       </Heading>
       <Flex>
         <Link
