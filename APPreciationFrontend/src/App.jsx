@@ -24,7 +24,7 @@ function App() {
       <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/businesses" component={Businesses} />
       <Route exact path="/noteform/:businessid" component={NoteForm} />
-      <Route exact path="/submit/:businessname" component={Submit} />
+      <Route exact path="/submit" component={Submit} />
     </Switch>
   );
 }

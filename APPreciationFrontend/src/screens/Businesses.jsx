@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import BusinessCard from "../components/BusinessCard";
 import BuisnessModal from "../components/BusinessModal";
-import { mockData } from "../dummydata/mockData";
+import { mockData } from "../dummydata/mockdata.js";
 import axios from "axios";
 
 function Businesses() {
