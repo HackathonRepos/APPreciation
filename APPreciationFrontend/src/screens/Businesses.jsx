@@ -15,7 +15,6 @@ import {
   Link,
 } from "@chakra-ui/react";
 import BusinessCard from "../components/BusinessCard";
-import BuisnessModal from "../components/BusinessModal";
 import { mockData } from "../dummydata/mockdata.js";
 import axios from "axios";
 
@@ -52,13 +51,13 @@ function Businesses() {
       key={index}
     />
   ));
-  // useEffect(() =>
-  //   firebase
-  //     .auth()
-  //     .onAuthStateChanged((user) =>
-  //       user ? console.log("Signed In") : history.push("/signup")
-  //     )
-  // );
+  useEffect(() =>
+    firebase
+      .auth()
+      .onAuthStateChanged((user) =>
+        user ? console.log("Signed In") : history.push("/signup")
+      )
+  );
   return (
     <Flex
       flexDirection="column"
