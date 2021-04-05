@@ -1,4 +1,7 @@
 import React from "react";
+import firebase from "firebase";
+import { v4 as uuidv4 } from "uuid";
+
 import {
   Modal,
   ModalOverlay,
@@ -18,7 +21,39 @@ import {
 
 function BusinessModal(props) {
   const toast = useToast();
-  const saveBusiness = () => {};
+  const saveBusiness = () => {
+    let db = firebase.firestore();
+
+    let user_id = firebase.auth().currentUser.uid;
+    let business_id = uuidv4();
+
+    let users = db.collection("users").doc(user_id);
+    let businesses = db.collection("restaurants").doc(business_id);
+
+    users
+    .get()
+    .then((data) => {
+      var user_data = data.data();
+      user_data["restaurants"].push(business_id);
+      user_data["restaurants"] = [...new Set(user_data["restaurants"])];
+      users
+        .set(user_data)
+        .then(console.log("users db update worked!"))
+        .catch((e) => {
+          console.log("error in users db update: " + e);
+        });
+
+      businesses
+        .set({name:props.businessName, rating:props.rating, price:props.price, open:props.open, reviews:props.reviews, number:props.number, address:props.address})
+        .then(console.log("businesses db update worked!"))
+        .catch((e) => {
+          console.log("error in businesses db update: " + e);
+        });
+    })
+    .catch((e) => {
+      console.log("error in user db get: " + e);
+    });
+  };
   return (
     <>
       <Modal
