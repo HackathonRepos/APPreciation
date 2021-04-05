@@ -28,7 +28,7 @@ function SignIn() {
               .then((results) => {
                 if (!results.exists) {
                   userRef
-                    .set({ name: user.displayName, restaurants: [], notes: [] })
+                    .set({ name: user.displayName, restaurants: [], recipients: [], words_written:0, notes_written:0, recipients_sent:0 })
                     .then(console.log("users db update worked!"))
                     .catch((e) => {
                       console.log("error in users db update: " + e);
