@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 LATITUDE = 37.786882
 LONGITUDE = -122.399972
-YELP_ACCESS_TOKEN = "cF6wMa675BUGiGhZ8pMVzfLNTpaNMVur82KKan9_kWcYmBX_mc6WIV0QVaCHGn5-ogLT_x0ck2C5cIUiJMixfGavxErAIkBdUxpLbEOyAPtndQPAcOdwYquPB_toYHYx"
+YELP_ACCESS_TOKEN = ""
 EMPTY_RESPONSE = json.dumps('')
 
 def get_auth_dict():
