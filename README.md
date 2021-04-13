@@ -1,6 +1,6 @@
 ## APPreciate
 
-## This is an unmaintained repository deployed with netlify on the client and pythonanywhere on the server
+## This is an unmaintained and unhosted repository deployed with netlify on the client and pythonanywhere on the server
 
 [Link](apppreciate.netlify.app/)
 
